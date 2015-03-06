@@ -6,13 +6,16 @@
                     <h3 class="panel-title">Please Sign In</h3>
                 </div>
                 <div class="panel-body">
-                    <form role="form" ng-controller="loginController" method="post" name="loginForm">
+                    <form role="form" ng-controller="loginController" method="post" name="loginForm" novalidate>
                         <fieldset>
-                            <div class="form-group">
-                                <input class="form-control" placeholder="E-mail" name="email" ng-model="email" type="email" autofocus>
+                            <div class="form-group" ng-class="{'has-error':loginForm.email.$invalid}">
+                                <input class="form-control" required="" placeholder="E-mail" name="email" ng-model="email" type="email" autofocus>
+                                <p ng-show="loginForm.email.$invalid" class="help-block">Please enter a valid Email.</p>
                             </div>
-                            <div class="form-group">
-                                <input class="form-control" placeholder="Password" name="password" ng-model="password" type="password" value="">
+                            <div class="form-group" ng-class="{'has-error':loginForm.password.$invalid}">
+                                <input class="form-control" ng-minlength = "5" placeholder="Password" name="password"  ng-model="password" type="password" value="" required="">
+                                <p ng-show="loginForm.password.$error.required" class="help-block">Please enter password.</p>
+                                <p ng-show="loginForm.password.$error.minlength" class="help-block">Password is too short.</p>
                             </div>
                             <div class="checkbox">
                                 <label>
@@ -21,7 +24,7 @@
                             </div>
                             <!-- Change this to a button or input when using this as a form -->
                             <!--<a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>-->
-                            <input type="submit" ng-click="doLogin()" class="btn btn-lg btn-success btn-block" value="Login" >
+                            <input ng-disabled="loginForm.email.$invalid || loginForm.password.$invalid" type="submit" ng-click="doLogin()" class="btn btn-lg btn-success btn-block" value="Login" >
                         </fieldset>
                     </form>
                 </div>
@@ -30,35 +33,35 @@
     </div>
 </div>
 <script>
-    
 
-angular.module('myFirstApp', [])
-.controller('loginController', ['$scope', '$http', '$templateCache',
-  function($scope, $http, $templateCache,Data) {
-  
-      $scope.doLogin = function () {
-            var request = $http({
-                method: "post",
-                url: "index.php/login/checkLogin",
-                data: {
-                    email: $scope.email,
-                    password: $scope.password
-                },
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-            });
-            /* Successful HTTP post request or not */
-            request.success(function (data) {
-                if(data == "1"){
-                    alert("Successfully Logged In");
+
+    angular.module('myFirstApp', [])
+            .controller('loginController', ['$scope', '$http', '$templateCache',
+                function ($scope, $http, $templateCache, Data) {
+
+                    $scope.doLogin = function () {
+                        var request = $http({
+                            method: "post",
+                            url: "index.php/login/checkLogin",
+                            data: {
+                                email: $scope.email,
+                                password: $scope.password
+                            },
+                            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                        });
+                        /* Successful HTTP post request or not */
+                        request.success(function (data) {
+                            if (data == "1") {
+                                alert("Successfully Logged In");
 //                 $scope.responseMessage = "Successfully Logged In";
-                }
-                else {
-                    alert("Not logged in");
-                 $scope.responseMessage = "Username or Password is incorrect";
-                }
-            });
-    }
-  }]);
+                            }
+                            else {
+                                alert("Not logged in");
+                                $scope.responseMessage = "Username or Password is incorrect";
+                            }
+                        });
+                    }
+                }]);
 
 
 </script>
