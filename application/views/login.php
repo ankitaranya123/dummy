@@ -24,7 +24,7 @@
                             </div>
                             <!-- Change this to a button or input when using this as a form -->
                             <!--<a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>-->
-                            <input ng-disabled="loginForm.email.$invalid || loginForm.password.$invalid" type="submit" ng-click="doLogin()" class="btn btn-lg btn-success btn-block" value="Login" >
+                            <input id="sub" ng-disabled="loginForm.email.$invalid || loginForm.password.$invalid" type="submit" ng-click="doLogin()" class="btn btn-lg btn-success btn-block" value="Login" >
                         </fieldset>
                     </form>
                 </div>
@@ -32,36 +32,4 @@
         </div>
     </div>
 </div>
-<script>
 
-
-    angular.module('myFirstApp', [])
-            .controller('loginController', ['$scope', '$http', '$templateCache',
-                function ($scope, $http, $templateCache, Data) {
-
-                    $scope.doLogin = function () {
-                        var request = $http({
-                            method: "post",
-                            url: "index.php/login/checkLogin",
-                            data: {
-                                email: $scope.email,
-                                password: $scope.password
-                            },
-                            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-                        });
-                        /* Successful HTTP post request or not */
-                        request.success(function (data) {
-                            if (data == "1") {
-                                alert("Successfully Logged In");
-//                 $scope.responseMessage = "Successfully Logged In";
-                            }
-                            else {
-                                alert("Not logged in");
-                                $scope.responseMessage = "Username or Password is incorrect";
-                            }
-                        });
-                    }
-                }]);
-
-
-</script>
