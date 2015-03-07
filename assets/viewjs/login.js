@@ -23,7 +23,7 @@ angular.module('myFirstApp', [])
                                      autoHideDelay: 3000
                                 });
                                 
-//                               window.location.href=base_url+"index.php/home/index"; 
+                               window.location.href=base_url+"index.php/home/index"; 
                             }
                             else {
 //                                alert("Not logged in");
