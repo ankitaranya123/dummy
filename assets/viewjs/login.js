@@ -1,11 +1,13 @@
- angular.module('myFirstApp', [])
+
+var base_url = document.getElementById("base_url").value;
+angular.module('myFirstApp', [])
             .controller('loginController', ['$scope', '$http', '$templateCache',
                 function ($scope, $http, $templateCache, Data) {
 
                     $scope.doLogin = function () {
                         var request = $http({
                             method: "post",
-                            url: "index.php/login/checkLogin",
+                            url: base_url+"index.php/login/checkLogin",
                             data: {
                                 email: $scope.email,
                                 password: $scope.password
@@ -16,10 +18,12 @@
                         request.success(function (data) {
                             if (data == "1") {
                                 $.notify("Successfully Logged In", "success",
-                                { position:"top right",
+                                {position:"top right",
                                     style: 'bootstrap',
                                      autoHideDelay: 3000
                                 });
+                                
+//                               window.location.href=base_url+"index.php/home/index"; 
                             }
                             else {
 //                                alert("Not logged in");
