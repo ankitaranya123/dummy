@@ -41,7 +41,39 @@ class Login extends CI_Controller {
         }
     }
 
-    public function logout() {
+    public function register() {
+
+        $this->load->view('/common/header.php');
+        $this->load->view('/register.php');
+        $this->load->view('/common/footer.php');
+    }
+
+   public function doRegister(){
+       
+       $postdata = file_get_contents("php://input");
+        $request = json_decode($postdata);
+        $arrData = array("fname"=>$request->fname,
+                         "lname"=>$request->lname,
+                         "city"=>$request->city,
+                         "state"=>$request->state,
+                         "country"=>$request->country,
+                         "pin"=>$request->pincode,
+                         "contact"=>$request->contact,
+                         "access_level"=>$request->access_level,
+                         "email"=>$request->email,
+                         "password"=>  md5($request->password),
+                         "dob"=>  date("Y-m-d",  strtotime($request->dob)),
+                          );
+        $res = $this->login_model->registerUser($arrData);
+        if ($res) {
+            echo '1';
+        } else {
+            echo '0';
+        }
+      
+       
+   }
+   public function logout() {
 
         redirect('login/index');
     }

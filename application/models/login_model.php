@@ -21,6 +21,12 @@ class Login_model extends CI_Model{
            return FALSE;
        }
    }
+   
+  public function registerUser($arrData=array()){
+      
+      $res=$this->db->insert('user',$arrData);
+      echo $res;die;
+  }
     
 }
 
