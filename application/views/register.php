@@ -10,7 +10,7 @@
                         <fieldset>
                             <div class="form-group" ng-class="{'has-error':regForm.fname.$invalid}">
                                 <input class="form-control" required="" placeholder="FirstName" name="fname" ng-model="fname" type="text" autofocus>
-                                <p ng-show="regForm.email.$invalid" class="help-block">Please enter First Name.</p>
+                                <p ng-show="regForm.fname.$invalid" class="help-block">Please enter First Name.</p>
                             </div>
                             <div class="form-group" ng-class="{'has-error':regForm.lname.$invalid}">
                                 <input class="form-control" placeholder="Last Name" name="lname"  ng-model="lname" type="text" value="" required="">
