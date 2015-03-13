@@ -37,7 +37,7 @@
                                 <p ng-show="regForm.contact.$error.required" class="help-block">Please enter Your Contact Number.</p>
                             </div>
                             <div class="form-group" ng-class="{'has-error':regForm.dob.$invalid}">
-                                <input class="form-control" placeholder="Date Of Birth" name="dob"  ng-model="dob" type="text" value="" required="">
+                                <input class="form-control" id="dob" placeholder="Date Of Birth" name="dob"  ng-model="dob" type="text" value="" required="">
                                 <p ng-show="regForm.dob.$error.required" class="help-block">Please enter Your Birth Date.</p>
                             </div>
                             <div class="form-group" ng-class="{'has-error':regForm.email.$invalid}">
@@ -73,4 +73,10 @@
         </div>
     </div>
 </div>
+<script>
+$("document").ready(function(){
+    $("#dob").datepicker();    
+});
 
+
+</script>
