@@ -1,4 +1,3 @@
-
 var base_url = document.getElementById("base_url").value;
 angular.module('myFirstApp', [])
     .controller('loginController', ['$scope', '$http', '$templateCache',
