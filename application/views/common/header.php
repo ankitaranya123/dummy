@@ -22,6 +22,9 @@
 
         <!-- Custom Fonts -->
         <link href="<?= base_url() ?>assets/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+       
+        <!-- date Picker -->
+        <link href="<?= base_url() ?>assets/less/jquery-ui.min.css" rel="stylesheet" type="text/css">
 
         <!-- DataTables CSS -->
         <link href="<?= base_url(); ?>assets/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
@@ -40,6 +43,9 @@
 
     <body ng-app="myFirstApp">
         <!-- Custom Theme JavaScript -->
-        <script src="<?= base_url(); ?>assets/js/angular.min.js"></script>
+        <!--<script src="<?= base_url(); ?>assets/js/angular.min.js"></script>-->
+
+        <script src="<?= base_url(); ?>assets/js/angular_module.js"></script>
+        <script src="<?= base_url(); ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
         <input type="hidden" id="base_url" value="<?php echo base_url(); ?>">
-      
+
