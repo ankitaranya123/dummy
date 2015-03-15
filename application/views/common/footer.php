@@ -14,7 +14,7 @@
 <!-- DataTables JavaScript -->
 <script src="<?= base_url(); ?>assets/bower_components/DataTables/media/js/jquery.dataTables.min.js"></script>
 <script src="<?= base_url(); ?>assets/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
-<script src="<?= base_url(); ?>assets/viewjs/common.js"></script>
+<script src="<?= base_url(); ?>assets/viewjs/common.js"></script>    
 <?php
 
 if (file_exists('./assets/viewjs/' . $this->router->fetch_class() . '.js')) {

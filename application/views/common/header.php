@@ -43,9 +43,8 @@
 
     <body ng-app="myFirstApp">
         <!-- Custom Theme JavaScript -->
-        <!--<script src="<?= base_url(); ?>assets/js/angular.min.js"></script>-->
+            <script src="<?= base_url(); ?>assets/js/angular.min.js"></script>
 
-        <script src="<?= base_url(); ?>assets/js/angular_module.js"></script>
         <script src="<?= base_url(); ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
         <input type="hidden" id="base_url" value="<?php echo base_url(); ?>">
 

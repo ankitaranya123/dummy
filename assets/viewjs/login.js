@@ -1,6 +1,6 @@
 var base_url = document.getElementById("base_url").value;
 
-    myApp.controller('loginController', ['$scope', '$http', '$templateCache',
+    app.controller('loginController', ['$scope', '$http', '$templateCache',
         function ($scope, $http, $templateCache, Data) {
 
             $scope.doLogin = function () {
@@ -45,7 +45,7 @@ var base_url = document.getElementById("base_url").value;
 
 
 
-    myApp.controller('regController', ['$scope', '$http', '$templateCache',
+    app.controller('regController', ['$scope', '$http', '$templateCache',
         function ($scope, $http, $templateCache, Data) {
 
             $scope.doRegister = function () {
