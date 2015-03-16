@@ -1,3 +1,11 @@
+<style>
+    
+    body{
+        
+        background-image: url('../assets/images/bg3.jpg');
+    }
+    
+</style>
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
