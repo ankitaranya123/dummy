@@ -32,8 +32,9 @@ class Login extends CI_Controller {
         $postdata = file_get_contents("php://input");
         $request = json_decode($postdata);
         $email = $request->email;
-        $password = $request->password;
+        $password = md5($request->password);
         $res = $this->login_model->check_login($email, $password);
+        $this->session->set_userdata('logged_in', $res);
         if ($res) {
             echo '1';
         } else {
@@ -48,33 +49,32 @@ class Login extends CI_Controller {
         $this->load->view('/common/footer.php');
     }
 
-   public function doRegister(){
-       
-       $postdata = file_get_contents("php://input");
+    public function doRegister() {
+
+        $postdata = file_get_contents("php://input");
         $request = json_decode($postdata);
-        $arrData = array("fname"=>$request->fname,
-                         "lname"=>$request->lname,
-                         "city"=>$request->city,
-                         "state"=>$request->state,
-                         "country"=>$request->country,
-                         "pin"=>$request->pincode,
-                         "contact"=>$request->contact,
-                         "access_level"=>$request->access_level,
-                         "email"=>$request->email,
-                         "password"=>  md5($request->password),
-                         "dob"=>  date("Y-m-d",  strtotime($request->dob)),
-                          );
-        $res = $this->login_model->registerUser($arrData);
+        $arrData = array("fname" => $request->fname,
+            "lname" => $request->lname,
+            "city" => $request->city,
+            "state" => $request->state,
+            "country" => $request->country,
+            "pin" => $request->pincode,
+            "contact" => $request->contact,
+            "access_level" => $request->access_level,
+            "email" => $request->email,
+            "password" => md5($request->password),
+            "dob" => date("Y-m-d", strtotime($request->dob)),
+        );
+        $res = $this->login_model->registerUser($arrData, $request->email);
         if ($res) {
             echo '1';
         } else {
             echo '0';
         }
-      
-       
-   }
-   public function logout() {
+    }
 
+    public function logout() {
+        $this->session->unset_userdata('logged_in');
         redirect('login/index');
     }
 
