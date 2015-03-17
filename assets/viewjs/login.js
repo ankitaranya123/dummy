@@ -49,12 +49,12 @@ app.controller('loginController', ['$scope', '$http', '$templateCache',
 
 
 
-app.controller('regController', ['$scope', '$http', '$templateCache',
-    function ($scope, $http, $templateCache, Data) {
-       
+app.controller('regController', ['$scope', '$http', '$templateCache','$window',
+    function ($scope, $http, $templateCache,$window, Data) {
         //        $scope.submitted = false;
         $scope.register = {
             doRegister : function (form) {
+                
                 $scope.submitted = true;
                 if(form.$valid){
                     var request = $http({
@@ -86,16 +86,20 @@ app.controller('regController', ['$scope', '$http', '$templateCache',
                                 style: 'bootstrap',
                                 autoHideDelay: 3000
                             });
+                          
+                          
                                 
                         }
                         else {
-                            //                                alert("Not logged in");
+                                                     
+                            //  alert("Not logged in");
                             $.notify("Email allready been taken..", 
                             {
                                 position:"top center",
                                 style: 'bootstrap',
                                 autoHideDelay: 3000
                             });
+                          
                         }
                     });
                 }

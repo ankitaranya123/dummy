@@ -14,7 +14,7 @@
                     <h3 class="panel-title">Please Sign In</h3>
                 </div>
                 <div class="panel-body">
-                    <form role="form" ng-controller="regController"  ng-submit="register.doRegister(regForm)" method="post" name="regForm" novalidate>
+                    <form role="form" ng-controller="regController"  ng-submit="register.doRegister(regForm)" method="post" name="regForm" id="regfrom" novalidate>
                         <fieldset>
                             <div class="form-group" ng-class="{'has-error':submitted && regForm.fname.$invalid}">
                                 <input class="form-control" required="" placeholder="FirstName" name="fname" ng-model="fname" type="text" autofocus>
