@@ -96,7 +96,6 @@ app.controller('regController', ['$scope', '$http', '$templateCache',
                                 style: 'bootstrap',
                                 autoHideDelay: 3000
                             });
-                            $scope.responseMessage = "Username or Password is incorrect";
                         }
                     });
                 }
