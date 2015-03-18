@@ -62,12 +62,13 @@
                                 <div class="col-lg-3"><label class="label label-info">Feature List</label></div>
                                 <div class="col-lg-9">
                                     <div class="col-lg-6" ng-repeat="feature in features">
-                                        <label><input ng-required="!someSelected(access_level.newObject)" required="required" name="feature_id[]" type="checkbox" ng-model="access_level.newObject[feature.feature_id]"> {{feature.feature}}</label>
+                                        <label><input required="required"  type="checkbox" ng-model="access_level.newObject[feature.feature_id]"> {{feature.feature}}</label>
                                     </div>
-                                    <p class="error" ng-show="submitted && access_level.newObject.$error.required">hata var hacı</p>
+                                   
                                 </div>
                             </div>
                         </fieldset>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="close" class="btn btn-default" data-dismiss="modal">Close</button>

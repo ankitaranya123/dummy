@@ -23,6 +23,7 @@ $(document).ready(function () {             // Datatable code
         ]}
     );
 
+
 });
 
 
@@ -42,6 +43,23 @@ app.controller('accessController', ['$scope', '$http', '$templateCache',
 //                    $scope.reload();
                 });
 
+        $(document).on('click', '.del', function () {
+            bootbox.confirm("Are you sure?", function (result) {
+                if (result == true) {
+                    $http.get(base_url + "home/access_delete/" + $(this).attr('data-id')).
+                            success(function (data, status, headers, config) {
+                                table.ajax.reload();
+                                $.notify('Access Level deleted',
+                                        {
+                                            position: "top right",
+                                            style: 'bootstrap',
+                                            autoHideDelay: 3000
+                                        });
+                            });
+                }
+            });
+
+        });
 //                $compile($('#access-level_wrapper').html())($scope);
 //        $scope.someSelected = function (object) {
 ////            return Object.keys(object).some(function (key) {
@@ -64,13 +82,13 @@ app.controller('accessController', ['$scope', '$http', '$templateCache',
 
 
         $scope.createAccess = function () {
-            console.log($scope.newObject);
+            console.log($scope.access_level.newObject);
             var request = $http({
                 method: "post",
                 url: base_url + "home/add_access",
                 data: {
                     access_name: $scope.access_name,
-                    feature_id: $scope.newObject
+                    feature_id: $scope.access_level.newObject
                 },
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'

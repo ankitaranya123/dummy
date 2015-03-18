@@ -11,6 +11,7 @@
 
 <script src="<?= base_url(); ?>assets/js/notify.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/jquery-ui.min.js"></script>
+<script src="<?= base_url(); ?>assets/js/bootbox.js"></script>
 <!-- DataTables JavaScript -->
 <script src="<?= base_url(); ?>assets/bower_components/DataTables/media/js/jquery.dataTables.min.js"></script>
 <script src="<?= base_url(); ?>assets/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>

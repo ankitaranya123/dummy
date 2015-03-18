@@ -46,7 +46,7 @@ class Home extends CI_Controller {
             $acc_id = $this->db->insert_id();
 
             foreach ($data->feature_id as $key => $val) {
-                if($val == true)
+//                if($val == 'true')
                 $this->db->insert('acc_fea_rel', array('access_id' => $acc_id, 'feature_id' => $key));
             }
            $result =  array('status'=>'1','msg'=>'Access Level created');
@@ -61,6 +61,12 @@ class Home extends CI_Controller {
         echo json_encode($featurelist);
     }
 
+    public function access_delete($id) {
+        
+        $this->db->delete('acc_fea_rel',array('access_id'=>$id));
+        $this->db->delete('access_level',array('access_id'=>$id));
+        
+    }
     public function get_all_access() { //Ajax table data for Access Level
         $sLimit = "";
         $lenght = 10;
@@ -111,7 +117,7 @@ class Home extends CI_Controller {
             } else {
                 $st = '<lable class="lable lable-error">Deactive</lable>';
             }
-            $output['aaData'][] = array($val['access_id'], $val['access_name'], $st, $val['created'], '<a class="btn btn-primary" href="#" ng-click="edit('.$val['access_id'].')">Edit</a><a class="btn btn-danger">Delete</a>');
+            $output['aaData'][] = array($val['access_id'], $val['access_name'], $st, $val['created'], '<a class="btn btn-primary edt" href="#" data-id="'.$val['access_id'].'">Edit</a><a data-id="'.$val['access_id'].'" class="btn btn-danger del">Delete</a>');
         }
         echo json_encode($output);
         die;
