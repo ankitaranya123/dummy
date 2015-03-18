@@ -1,4 +1,4 @@
-<script src="<?= base_url(); ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<?= base_url(); ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
