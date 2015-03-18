@@ -12,7 +12,7 @@ class Feature_list extends CI_Model{
     }
     
     public function get_feature() {
-       $query = $this->db->select()
+       $query = $this->db->select('*')->from('feature_list')
                 ->get();
        return $query->result_array();
     }
