@@ -63,7 +63,7 @@ class User extends CI_Controller {
         $i = 0;
         $final = array();
         foreach ($result as $val) {
-            $output['aaData'][] = array($val['id'], $val['fname'] . ' ' . $val['lname'], $val['pin'], $val['email'], $val['dob'], 'Edit');
+            $output['aaData'][] = array($val['id'], $val['fname'] . ' ' . $val['lname'], $val['pin'], $val['email'], $val['dob'],'<a class="btn btn-primary" href="#">Edit</a><a class="btn btn-danger">Delete</a>');
         }
         echo json_encode($output);
         die;
