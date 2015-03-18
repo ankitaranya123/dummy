@@ -4,6 +4,10 @@
         
         background-image: url('../assets/images/bg3.jpg');
     }
+    .login-panel{
+        
+        margin-top: 35% !important;
+    }
     
 </style>
 <div class="container">

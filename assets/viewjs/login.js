@@ -80,6 +80,7 @@ app.controller('regController', ['$scope', '$http', '$templateCache','$window',
                     /* Successful HTTP post request or not */
                     request.success(function (data) {
                         if (data == "1") {
+                            $("#regForm")[0].reset();
                             $.notify("You are successfully Registered", "success",
                             {
                                 position:"top center",
@@ -91,7 +92,7 @@ app.controller('regController', ['$scope', '$http', '$templateCache','$window',
                                 
                         }
                         else {
-                                                     
+                             $("#regForm")[0].reset();                  
                             //  alert("Not logged in");
                             $.notify("Email allready been taken..", 
                             {
