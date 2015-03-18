@@ -47,26 +47,32 @@
                 <form role="form" ng-controller="accessController" method="post" name="access_level" novalidate>
                 <div class="modal-body">
                         <fieldset>
-                            <div class="form-group" ng-class="{'has-error':access_level.access_name.$invalid}">
+                            <div class="form-group" ng-class="{'has-error':access_level.access_name.$invalid || access_level.show_err.$invalid}">
                                 <div class="col-lg-3"><label class="label label-info">Access Level</label></div>
                                 <div class="col-lg-9">
-                                    <input class="form-control" required="" placeholder="access Name" name="access_name" ng-model="access_name" type="email" autofocus>
+                                    <input class="form-control" required="" placeholder="access Name" name="access_name" ng-model="access_name" type="text" autofocus>
+                                    <input class="form-control" value="{{show_err}}" required="" name="show_err" ng-model="show_err" type="hidden" autofocus>
                                     <p ng-show="access_level.access_name.$invalid" class="help-block">Access name is required</p>
+                                    <p ng-show="access_level.show_err.$invalid" ng-model="msg" class="help-block">{{msg}}</p>
                                 </div>
                             </div>
-                            <div class="form-group" ng-class="{'has-error':access_level.feature.$invalid}">
+                            <div class="row">&nbsp;</div>
+                            <div class="row">&nbsp;</div>
+                            <div class="form-group" ng-class="{'has-error':access_level.newObject.$invalid || access_level.$error}">
                                 <div class="col-lg-3"><label class="label label-info">Feature List</label></div>
                                 <div class="col-lg-9">
                                     <div class="col-lg-6" ng-repeat="feature in features">
-                                        <label><input type="checkbox" ng-model="newObject[feature.feature_id]">{{feature.feature}}</label>
+                                        <label><input ng-required="!someSelected(access_level.newObject)" required="required" name="feature_id[]" type="checkbox" ng-model="access_level.newObject[feature.feature_id]"> {{feature.feature}}</label>
                                     </div>
+                                    <p class="error" ng-show="submitted && access_level.newObject.$error.required">hata var hacı</p>
                                 </div>
                             </div>
-                        </fieldset
+                        </fieldset>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="sub" ng-disabled="access_level.access_name.$invalid || access_level.feature.$invalid" type="submit" ng-click="createAccess()" >Save changes</button>
+                    <button type="button" id="close" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="reset"  style="display: none" id="res"></button>
+                    <button type="button" class="btn btn-primary" id="sub" ng-disabled="access_level.access_name.$invalid && access_level.$error" type="submit" ng-click="createAccess()" >Save changes</button>
                 </div>
                  </form>
             </div>
