@@ -18,7 +18,7 @@ class User extends CI_Controller {
         $this->load->view('/common/footer.php');
     }
 
-    public function get_all_users() { //Ajax table data for Access Level
+    public function get_all_users($access_level = FALSE) { //Ajax table data for Access Level
         $sLimit = "";
         $lenght = 10;
         $str_point = 0;
