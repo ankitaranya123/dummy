@@ -6,16 +6,17 @@
         <group>
             <file>file:/F:/wamp/www/dummy/assets/viewjs/common.js</file>
             <file>file:/F:/wamp/www/dummy/application/controllers/login.php</file>
-            <file>file:/F:/wamp/www/dummy/application/views/admin/access_level.php</file>
             <file>file:/F:/wamp/www/dummy/application/models/login_model.php</file>
-            <file>file:/F:/wamp/www/dummy/application/views/register.php</file>
-            <file>file:/F:/wamp/www/dummy/assets/js/angular_module.js</file>
+            <file>file:/F:/wamp/www/dummy/application/models/feature_list.php</file>
             <file>file:/F:/wamp/www/dummy/application/views/login.php</file>
             <file>file:/F:/wamp/www/dummy/application/config/database.php</file>
             <file>file:/F:/wamp/www/dummy/application/views/common/footer.php</file>
             <file>file:/F:/wamp/www/dummy/application/controllers/home.php</file>
             <file>file:/F:/wamp/www/dummy/assets/viewjs/home.js</file>
             <file>file:/F:/wamp/www/dummy/application/views/common/header.php</file>
+            <file>file:/F:/wamp/www/dummy/application/views/admin/access_level.php</file>
+            <file>file:/F:/wamp/www/dummy/application/views/register.php</file>
+            <file>file:/F:/wamp/www/dummy/assets/js/angular_module.js</file>
         </group>
     </open-files>
 </project-private>

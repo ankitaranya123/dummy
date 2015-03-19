@@ -50,6 +50,7 @@
                             <div class="form-group" ng-class="{'has-error':access_level.access_name.$invalid || access_level.show_err.$invalid}">
                                 <div class="col-lg-3"><label class="label label-info">Access Level</label></div>
                                 <div class="col-lg-9">
+                                    <input class="form-control" type="hidden" name="access_id" ng-model="access_id" value="{{access_id}}" type="text">
                                     <input class="form-control" required="" placeholder="access Name" name="access_name" ng-model="access_name" type="text" autofocus>
                                     <input class="form-control" value="{{show_err}}" required="" name="show_err" ng-model="show_err" type="hidden" autofocus>
                                     <p ng-show="access_level.access_name.$invalid" class="help-block">Access name is required</p>
@@ -68,7 +69,7 @@
                                 </div>
                             </div>
                         </fieldset>
-                    
+                    {{access_level.newObject}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="close" class="btn btn-default" data-dismiss="modal">Close</button>

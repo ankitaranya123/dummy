@@ -16,9 +16,9 @@ $(document).ready(function () {             // Datatable code
         "bDestroy": true, //!!!--- for remove data table warning.
         "aoColumnDefs": [
             {"aTargets": [0]},
-            {"sClass": "text-center", "aTargets": [0]},
-            {"sClass": "text-center", "aTargets": [1]},
-            {"sClass": "text-center", "aTargets": [2]},
+            {"sClass": "text-center id", "aTargets": [0]},
+            {"sClass": "text-center level", "aTargets": [1]},
+            {"sClass": "text-center status", "aTargets": [2]},
             {"sClass": "text-center", "aTargets": [3]}
         ]}
     );
@@ -35,6 +35,7 @@ app.controller('accessController', ['$scope', '$http', '$templateCache',
 
         $scope.newObject = {};
         $scope.master = {};
+        $scope.access_id = -1;
         $scope.features = [];
         $scope.show_err = 'test';
         $http.get(base_url + "home/get_feature").
@@ -59,6 +60,20 @@ app.controller('accessController', ['$scope', '$http', '$templateCache',
                 }
             });
 
+        });
+
+        $(document).on('click', '.edt', function () {
+            $scope.access_name = $(this).parent().siblings('.level').html();
+            console.log($(this).parent().siblings('.level').html());
+            $scope.access_id = $(this).attr('data-id');
+            $http.get(base_url + "home/get_access_relation/" + $(this).attr('data-id')).
+                    success(function (data, status, headers, config) {
+                        
+                        var value = angular.fromJson(data);
+                        $scope.access_level.newObject = value;
+                        $('#myModal').modal('show');
+                        $scope.reload();
+                    });
         });
 //                $compile($('#access-level_wrapper').html())($scope);
 //        $scope.someSelected = function (object) {
@@ -87,6 +102,7 @@ app.controller('accessController', ['$scope', '$http', '$templateCache',
                 method: "post",
                 url: base_url + "home/add_access",
                 data: {
+                    access_id : $scope.access_id,
                     access_name: $scope.access_name,
                     feature_id: $scope.access_level.newObject
                 },
