@@ -23,4 +23,19 @@ $(document).ready(function () {
             {"sClass": "hidden-phone", "aTargets": [5]}
         ]}
     );
+        
+        
+        
 });
+     function filterUser(){
+   
+    var filter_val = $("#access_filter").val();
+         
+        $.ajax({
+            url: base_url + "user/get_all_users/"+filter_val+""
+        });
+
+  }
+
+
+
