@@ -35,6 +35,19 @@ class Login_model extends CI_Model {
         }
     }
 
+    public function getAcessLevel() {
+
+        $this->db->select('access_id,access_name');
+        $this->db->from('access_level');
+        $this->db->where('status', 1);
+        $res = $this->db->get();
+        if ($res->num_rows() > 0) {
+          return $res->result_array();
+        } else {
+            return false;
+        }
+    }
+
 }
 
 ?>

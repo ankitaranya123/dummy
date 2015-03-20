@@ -60,7 +60,7 @@ class Login extends CI_Controller {
             "country" => $request->country,
             "pin" => $request->pincode,
             "contact" => $request->contact,
-            "access_level" => $request->access_level,
+            "access_level" => $request->access_level->access_id,
             "email" => $request->email,
             "password" => md5($request->password),
             "dob" => date("Y-m-d", strtotime($request->dob)),
@@ -71,6 +71,14 @@ class Login extends CI_Controller {
         } else {
             echo '0';
         }
+    }
+    
+    public function get_acceslevel(){
+        
+        $res=$this->login_model->getAcessLevel();
+        echo json_encode($res);
+        die;
+        
     }
 
     public function logout() {
