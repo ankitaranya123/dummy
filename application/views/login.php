@@ -2,7 +2,7 @@
     
     body{
         
-        background-image: url('../assets/images/bg3.jpg');
+        background-image: url('assets/images/bg3.jpg');
     }
     .login-panel{
         

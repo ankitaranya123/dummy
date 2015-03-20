@@ -9,7 +9,7 @@ app.controller('loginController', ['$scope', '$http', '$templateCache',
                 if(form.$valid){
                     var request = $http({
                         method: "post",
-                        url: base_url+"index.php/login/checkLogin",
+                        url: base_url+"login/checkLogin",
                         data: {
                             email: $scope.email,
                             password: $scope.password
@@ -28,7 +28,7 @@ app.controller('loginController', ['$scope', '$http', '$templateCache',
                                 autoHideDelay: 3000
                             });
                                 
-                            window.location.href=base_url+"index.php/home/index"; 
+                            window.location.href=base_url+"home"; 
                         }
                         else {
                             //                                alert("Not logged in");
