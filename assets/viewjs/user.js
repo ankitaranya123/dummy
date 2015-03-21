@@ -20,7 +20,8 @@ $(document).ready(function () {
             {"sClass": "hidden-phone", "aTargets": [2]},
             {"sClass": "hidden-phone", "aTargets": [3]},
             {"sClass": "hidden-phone", "aTargets": [4]},
-            {"sClass": "hidden-phone", "aTargets": [5]}
+            {"sClass": "hidden-phone", "aTargets": [5]},
+            {"sClass": "hidden-phone", "aTargets": [6]}
         ]}
     );
         
