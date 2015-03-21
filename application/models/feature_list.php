@@ -11,7 +11,11 @@ class Feature_list extends CI_Model{
         parent::__construct();
     }
     
-    public function get_feature() {
+    public function get_feature($acc_id = FALSE) {
+        if($acc_id != FALSE)
+        {
+            $this->db->where('access_id',$acc_id);
+        }
        $query = $this->db->select('*')->from('feature_list')
                 ->get();
        return $query->result_array();
