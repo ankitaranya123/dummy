@@ -17,10 +17,14 @@
                                 <th>Pin</th>
                                 <th>Email</th>
                                 <th>Date Of Birth</th>
-                                <th><select>
+                                <th>
+                                    <select id="access_level">
                                         <option value="">Access Level</option>
-                                        <option value="1">Test</option>
-                                        <option value="2">Test1</option>
+                                         <?php if(!is_null($access_level)){
+                                             foreach($access_level as $accessLevel){
+                                             ?>
+                                        <option value="<?php echo $accessLevel['access_id'];?>"><?php echo $accessLevel['access_name']; ?></option>
+                                        <?php } } ?>
                                  </select>
                                 </th>
                                 <th>Action</th>

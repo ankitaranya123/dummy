@@ -1,7 +1,8 @@
 var base_url = document.getElementById("base_url").value;
+var oTable;
 $(document).ready(function () {   
 // datatable for all users
-    $('#userlist').DataTable({
+ oTable = $('#userlist').DataTable({
         responsive: true,
         "oLanguage": {
             "sProcessing": "<img src='" + base_url + "../assets/img/ajax-loader.gif'>"},
@@ -25,18 +26,26 @@ $(document).ready(function () {
         ]}
     );
         
-        
+      // Apply the search
+//    $("#access_level").on("change",function () {
+////        alert($(this).val());
+//                oTable.fnFilter( this.value, $("#access_level").index(this) );
+//                //document.write("Value =" + this.value, "Select box =" + $("tfoot select").index(this));
+//                } );
+                $("#access_level").change(function(){
+                    oTable.columns(5).search(this.value).draw();
+                });
         
 });
-     function filterUser(){
-   
-    var filter_val = $("#access_filter").val();
-         
-        $.ajax({
-            url: base_url + "user/get_all_users/"+filter_val+""
-        });
-
-  }
+//     function filterUser(){
+//   
+//    var filter_val = $("#access_filter").val();
+//         
+//        $.ajax({
+//            url: base_url + "user/get_all_users/"+filter_val+""
+//        });
+//
+//  }
 
 
 
