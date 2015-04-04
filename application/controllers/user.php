@@ -12,9 +12,18 @@ class User extends CI_Controller {
     }
 
     public function index() {
+        
+        $res=$this->db->get_where('access_level',array("status"=>1));
+        if($res->num_rows() > 0){
+            
+            $data['access_level'] = $res->result_array();
+        }else{
+            $data['access_level'] = NULL;
+        }
+        
         $this->load->view('/common/header.php');
         $this->load->view('/common/sub-header.php');
-        $this->load->view('/admin/user_list.php');
+        $this->load->view('/admin/user_list.php',$data);
         $this->load->view('/common/footer.php');
     }
 
@@ -34,6 +43,10 @@ class User extends CI_Controller {
         $this->db->select('user.id, user.fname,user.lname,user.pin,user.email,user.dob,access_level.access_name');
         $this->db->join('access_level','user.access_level = access_level.access_id');
         $this->db->from('user');
+        if (isset($_GET['sSearch_5']) && $_GET['sSearch_5'] != "") {
+            $words = $_GET['sSearch_5'];
+                $this->db->where('user.access_level',$words);
+        }
         if (isset($_GET['sSearch']) && $_GET['sSearch'] != "") {
             $words = $_GET['sSearch'];
             for ($i = 0; $i < count($col_sort); $i++) {
