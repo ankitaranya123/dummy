@@ -44,6 +44,15 @@ app.controller('accessController', ['$scope', '$http', '$templateCache',
 //                    $scope.reload();
                 });
 
+        $(document).on('click', '#create_level', function () {
+            $scope.access_level.newObject = {};
+            $scope.access_id = 0;
+            console.log( $scope.access_level);
+            alert( $scope.access_id);
+            console.log($("#access_level").reset());
+            $('#res').click();
+        });
+
         $(document).on('click', '.del', function () {
             bootbox.confirm("Are you sure?", function (result) {
                 if (result == true) {
@@ -68,11 +77,12 @@ app.controller('accessController', ['$scope', '$http', '$templateCache',
             $scope.access_id = $(this).attr('data-id');
             $http.get(base_url + "home/get_access_relation/" + $(this).attr('data-id')).
                     success(function (data, status, headers, config) {
-                        
+
                         var value = angular.fromJson(data);
                         $scope.access_level.newObject = value;
+                        
                         $('#myModal').modal('show');
-                        $scope.reload();
+                       // $scope.reload();
                     });
         });
 //                $compile($('#access-level_wrapper').html())($scope);
@@ -91,10 +101,6 @@ app.controller('accessController', ['$scope', '$http', '$templateCache',
 //          
 //        };
 
-        $scope.edit = function (acc_id) {
-            alert(acc_id);
-        }
-
 
         $scope.createAccess = function () {
             console.log($scope.access_level.newObject);
@@ -102,7 +108,7 @@ app.controller('accessController', ['$scope', '$http', '$templateCache',
                 method: "post",
                 url: base_url + "home/add_access",
                 data: {
-                    access_id : $scope.access_id,
+                    access_id: $scope.access_id,
                     access_name: $scope.access_name,
                     feature_id: $scope.access_level.newObject
                 },

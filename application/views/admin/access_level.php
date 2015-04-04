@@ -7,7 +7,7 @@
             </div>
 
             <div class="col-lg-12">
-                <a class="btn btn-primary"  data-toggle="modal" data-target="#myModal">Create Level</a>
+                <a id="create_level" ng-click="resetForm('access_level')" class="btn btn-primary"  data-toggle="modal" data-target="#myModal">Create Level</a>
             </div>
             <div class="col-lg-12">&nbsp;</div>
             <div class="col-lg-12">
@@ -44,10 +44,10 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">Create Access Level</h4>
                 </div>
-                <form role="form" ng-controller="accessController" method="post" name="access_level" novalidate>
+                <form id="access_level" role="form" ng-controller="accessController" method="post" name="access_level" novalidate>
                 <div class="modal-body">
                         <fieldset>
-                            <div class="form-group" ng-class="{'has-error':access_level.access_name.$invalid || access_level.show_err.$invalid}">
+                            <div class="form-group col-lg-12" ng-class="{'has-error':access_level.access_name.$invalid || access_level.show_err.$invalid}">
                                 <div class="col-lg-3"><label class="label label-info">Access Level</label></div>
                                 <div class="col-lg-9">
                                     <input class="form-control" type="hidden" name="access_id" ng-model="access_id" value="{{access_id}}" type="text">
@@ -57,9 +57,22 @@
                                     <p ng-show="access_level.show_err.$invalid" ng-model="msg" class="help-block">{{msg}}</p>
                                 </div>
                             </div>
-                            <div class="row">&nbsp;</div>
-                            <div class="row">&nbsp;</div>
-                            <div class="form-group" ng-class="{'has-error':access_level.newObject.$invalid || access_level.$error}">
+                            <div class="form-group col-lg-12" ng-class="{'has-error':access_level.status.$invalid }">
+                                <div class="col-lg-3"><label class="label label-info">Status</label></div>
+                                <div class="col-lg-9">
+                                    <select class="form-control" required="" name="status" ng-model="status">
+                                        <option value="active">
+                                            Active
+                                        </option>
+                                        <option value="Deactive">
+                                            Deactive
+                                        </option>
+                                    </select>
+                                    <p ng-show="access_level.status.$invalid" class="help-block">Status is required</p>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group col-lg-12" ng-class="{'has-error':access_level.newObject.$invalid || access_level.$error}">
                                 <div class="col-lg-3"><label class="label label-info">Feature List</label></div>
                                 <div class="col-lg-9">
                                     <div class="col-lg-6" ng-repeat="feature in features">
@@ -68,6 +81,7 @@
                                    
                                 </div>
                             </div>
+                            
                         </fieldset>
                     {{access_level.newObject}}
                 </div>
