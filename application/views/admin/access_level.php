@@ -7,7 +7,7 @@
             </div>
 
             <div class="col-lg-12">
-                <a id="create_level" ng-click="resetForm('access_level')" class="btn btn-primary"  data-toggle="modal" data-target="#myModal">Create Level</a>
+                <a id="create_level" ng-click="resetForm('access_level')" class="btn btn-primary"  data-toggle="modal" data-target="#">Create Level</a>
             </div>
             <div class="col-lg-12">&nbsp;</div>
             <div class="col-lg-12">
@@ -47,48 +47,48 @@
                 <form id="access_level" role="form" ng-controller="accessController" method="post" name="access_level" novalidate>
                 <div class="modal-body">
                         <fieldset>
-                            <div class="form-group col-lg-12" ng-class="{'has-error':access_level.access_name.$invalid || access_level.show_err.$invalid}">
+                            <div class="form-group col-lg-12" ng-class="{'has-error':submitted && (access_level.access_name.$invalid || access_level.show_err.$invalid)}">
                                 <div class="col-lg-3"><label class="label label-info">Access Level</label></div>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="hidden" name="access_id" ng-model="access_id" value="{{access_id}}" type="text">
-                                    <input class="form-control" required="" placeholder="access Name" name="access_name" ng-model="access_name" type="text" autofocus>
+                                    <input class="form-control" type="hidden" name="access_id" ng-model="access.access_id" value="{{access.access_id}}" type="text">
+                                    <input class="form-control" required="" placeholder="access Name" name="access_name" ng-model="access.access_name" type="text" autofocus>
                                     <input class="form-control" value="{{show_err}}" required="" name="show_err" ng-model="show_err" type="hidden" autofocus>
-                                    <p ng-show="access_level.access_name.$invalid" class="help-block">Access name is required</p>
-                                    <p ng-show="access_level.show_err.$invalid" ng-model="msg" class="help-block">{{msg}}</p>
+                                    <p ng-show="submitted && access_level.access_name.$invalid" class="help-block">Access name is required</p>
+                                    <p ng-show="submitted && access_level.show_err.$invalid" ng-model="msg" class="help-block">{{msg}}</p>
                                 </div>
                             </div>
-                            <div class="form-group col-lg-12" ng-class="{'has-error':access_level.status.$invalid }">
+                            <div class="form-group col-lg-12" ng-class="{'has-error': submitted && access_level.status.$invalid }">
                                 <div class="col-lg-3"><label class="label label-info">Status</label></div>
                                 <div class="col-lg-9">
-                                    <select class="form-control" required="" name="status" ng-model="status">
-                                        <option value="active">
+                                    <select class="form-control" required="" name="status" ng-model="access.status">
+                                        <option selected="" value="1">
                                             Active
                                         </option>
-                                        <option value="Deactive">
+                                        <option value="0">
                                             Deactive
                                         </option>
                                     </select>
-                                    <p ng-show="access_level.status.$invalid" class="help-block">Status is required</p>
+                                    <p ng-show="submitted && access_level.status.$invalid" class="help-block">Status is required</p>
                                 </div>
                             </div>
                             
-                            <div class="form-group col-lg-12" ng-class="{'has-error':access_level.newObject.$invalid || access_level.$error}">
+                            <div class="form-group col-lg-12" ng-class="{'has-error':submitted && (access.count == 0)}">
                                 <div class="col-lg-3"><label class="label label-info">Feature List</label></div>
                                 <div class="col-lg-9">
                                     <div class="col-lg-6" ng-repeat="feature in features">
-                                        <label><input required="required"  type="checkbox" ng-model="access_level.newObject[feature.feature_id]"> {{feature.feature}}</label>
+                                        <label><input ng-click ="chk(feature.feature_id)" ng-required="access.count==0" type="checkbox" value="{{feature.feature_id}}" name="f[]" ng-model="access.newObject[feature.feature_id]"> {{feature.feature}}</label>
                                     </div>
                                    
                                 </div>
                             </div>
                             
                         </fieldset>
-                    {{access_level.newObject}}
-                </div>
+                 
+                    </div>
                 <div class="modal-footer">
                     <button type="button" id="close" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="reset"  style="display: none" id="res"></button>
-                    <button type="button" class="btn btn-primary" id="sub" ng-disabled="access_level.access_name.$invalid && access_level.$error" type="submit" ng-click="createAccess()" >Save changes</button>
+                    <button type="button" ng-click="createAccess(access_level)" class="btn btn-primary"  type="submit"  >Save changes</button>
                 </div>
                  </form>
             </div>

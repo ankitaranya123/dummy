@@ -34,29 +34,29 @@ app.controller('accessController', ['$scope', '$http', '$templateCache',
     function ($scope, $http, $templateCache, Data) {
 
         $scope.newObject = {};
-        $scope.master = {};
-        $scope.access_id = -1;
+        $scope.master = {access_id: -1, access_name: '', newObject: {}, status: '1', count: 0};
+        $scope.access = {};
+        $scope.submitted = false;
+        $scope.access.access_id = -1;
+        $scope.access.count = 0;
         $scope.features = [];
         $scope.show_err = 'test';
         $http.get(base_url + "home/get_feature").
                 success(function (data, status, headers, config) {
                     $scope.features = data;
-//                    $scope.reload();
                 });
 
         $(document).on('click', '#create_level', function () {
-            $scope.access_level.newObject = {};
-            $scope.access_id = 0;
-            console.log( $scope.access_level);
-            alert( $scope.access_id);
-            console.log($("#access_level").reset());
+            $scope.access = angular.copy($scope.master);
+            $('#myModal').modal('show');
             $('#res').click();
         });
 
         $(document).on('click', '.del', function () {
+            var id = $(this).attr('data-id');
             bootbox.confirm("Are you sure?", function (result) {
                 if (result == true) {
-                    $http.get(base_url + "home/access_delete/" + $(this).attr('data-id')).
+                    $http.get(base_url + "home/access_delete/" + id).
                             success(function (data, status, headers, config) {
                                 table.ajax.reload();
                                 $.notify('Access Level deleted',
@@ -72,79 +72,81 @@ app.controller('accessController', ['$scope', '$http', '$templateCache',
         });
 
         $(document).on('click', '.edt', function () {
-            $scope.access_name = $(this).parent().siblings('.level').html();
-            console.log($(this).parent().siblings('.level').html());
-            $scope.access_id = $(this).attr('data-id');
+            $scope.access.access_name = $(this).parent().siblings('.level').html();
+            $scope.access.access_id = $(this).attr('data-id');
+            $scope.access.status = $(this).parent().siblings('.status').children('.label').attr("data-attr");
             $http.get(base_url + "home/get_access_relation/" + $(this).attr('data-id')).
                     success(function (data, status, headers, config) {
-
                         var value = angular.fromJson(data);
-                        $scope.access_level.newObject = value;
-                        
+                        $scope.access.newObject = value;
                         $('#myModal').modal('show');
-                       // $scope.reload();
                     });
         });
-//                $compile($('#access-level_wrapper').html())($scope);
-//        $scope.someSelected = function (object) {
-////            return Object.keys(object).some(function (key) {
-//
-//                var count = object.length;
-////                alert(count);
-//                if(count > 0){
-////                    alert(count);
-//                    return false;
-//                }
-//                else{
-//                    return true;
-//                }
-//          
-//        };
 
+        $scope.chk = function (modalname) {
+            console.log(modalname);
+            if ($scope.access.newObject[modalname] == true) {
+                $scope.access.count++;
+            } else {
+                if ($scope.access.count)
+                    $scope.access.count = $scope.access.count - 1;
+            }
 
-        $scope.createAccess = function () {
-            console.log($scope.access_level.newObject);
-            var request = $http({
-                method: "post",
-                url: base_url + "home/add_access",
-                data: {
-                    access_id: $scope.access_id,
-                    access_name: $scope.access_name,
-                    feature_id: $scope.access_level.newObject
-                },
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            });
-            /* Successful HTTP post request or not */
-            request.success(function (data) {
+            if ($scope.access.count == 0)
+            {
+                $scope.access.req = 1;
+            }
 
-                if (data.status == "1") {
-                    $.notify(data.msg,
-                            {
-                                position: "top right",
-                                style: 'bootstrap',
-                                autoHideDelay: 3000
-                            }, 'success');
-                    $scope.show_err = 'asd';
+        };
 
-                    $('#res').click();
-                    $('#close').click();
-                    table.ajax.reload();
-                }
-                else {
-                    $.notify(data.msg,
-                            {
-                                position: "top right",
-                                style: 'bootstrap',
-                                autoHideDelay: 3000
-                            });
-                    console.log($scope);
-                    $scope.show_err = '';
-                    $scope.msg = data.msg;
+        $scope.createAccess = function (form) {
+            
+            $scope.submitted = true;
+            if (form.$valid) {
 
-                }
-            });
+                var request = $http({
+                    method: "post",
+                    url: base_url + "home/add_access",
+                    data: {
+                        access_id: $scope.access.access_id,
+                        access_name: $scope.access.access_name,
+                        feature_id: $scope.access.newObject,
+                        status: $scope.access.status
+                    },
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                });
+                /* Successful HTTP post request or not */
+                request.success(function (data) {
+
+                    if (data.status == "1") {
+                        $.notify(data.msg,
+                                {
+                                    position: "top right",
+                                    style: 'bootstrap',
+                                    autoHideDelay: 3000
+                                }, 'success');
+                        $scope.show_err = 'asd';
+                        $scope.access = {};
+                        $('#res').click();
+                        $('#close').click();
+                        table.ajax.reload();
+                    }
+                    else {
+                        $.notify(data.msg,
+                                {
+                                    position: "top right",
+                                    style: 'bootstrap',
+                                    autoHideDelay: 3000
+                                });
+                        console.log($scope);
+                        $scope.show_err = '';
+                        $scope.msg = data.msg;
+
+                    }
+                });
+            }
         }
 
     }]);

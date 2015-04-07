@@ -56,7 +56,7 @@ class Home extends CI_Controller {
         if (isset($data->access_id) && $data->access_id < 0) {
             $res = $this->db->get_where('access_level', array('access_name' => $data->access_name));
             if ($res->num_rows() == 0) {
-                $this->db->insert('access_level', array('access_name' => $data->access_name));
+                $this->db->insert('access_level', array('access_name' => $data->access_name,'status'=>$data->status));
                 $acc_id = $this->db->insert_id();
 
                 foreach ($data->feature_id as $key => $val) {
@@ -72,7 +72,7 @@ class Home extends CI_Controller {
             $res = $this->db->get_where('access_level', array('access_name' => $data->access_name, 'access_id !=' => $data->access_id));
             if ($res->num_rows() == 0) {
                 $this->db->where('access_id', $data->access_id);
-                $this->db->update('access_level', array('access_name' => $data->access_name));
+                $this->db->update('access_level', array('access_name' => $data->access_name,'status'=>$data->status));
 
                 $this->db->delete('acc_fea_rel', array('access_id' => $data->access_id));
 
@@ -145,9 +145,9 @@ class Home extends CI_Controller {
         $final = array();
         foreach ($result as $val) {
             if ($val['status'] == 1) {
-                $st = '<lable class="label label-info">Active</lable>';
+                $st = '<lable class="label label-info" data-attr = "1">Active</lable>';
             } else {
-                $st = '<lable class="lable lable-error">Deactive</lable>';
+                $st = '<lable class="label label-danger" data-attr = "0">Deactive</lable>';
             }
             $output['aaData'][] = array($val['access_id'], $val['access_name'], $st, $val['created'], '<a class="btn btn-primary edt" href="#" data-id="' . $val['access_id'] . '">Edit</a><a data-id="' . $val['access_id'] . '" class="btn btn-danger del">Delete</a>');
         }
