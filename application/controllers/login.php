@@ -23,7 +23,7 @@ class Login extends CI_Controller {
         } else {
 //               var_dump($this->session->userdata('logged_in'));
 //                $this->session->unset_userdata('logged_in');  
-            redirect('mdb');
+            redirect('home');
         }
     }
 

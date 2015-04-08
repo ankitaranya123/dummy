@@ -214,7 +214,7 @@
                     <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="<?php echo base_url() . "login/logout"; ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li><a href="<?php echo base_url() . "logout"; ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -254,7 +254,7 @@
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="<?= base_url('home/access_level'); ?>"><i class="fa fa-table fa-fw"></i> Access Level</a>
+                        <a href="<?= base_url('access_level'); ?>"><i class="fa fa-table fa-fw"></i> Access Level</a>
                     </li>
                     <li>
                         <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
