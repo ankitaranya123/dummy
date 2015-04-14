@@ -257,6 +257,9 @@
                         <a href="<?= base_url('access_level'); ?>"><i class="fa fa-table fa-fw"></i> Access Level</a>
                     </li>
                     <li>
+                        <a href="<?= base_url('project'); ?>"><i class="fa fa-table fa-fw"></i> Project</a>
+                    </li>
+                    <li>
                         <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
                     </li>
                     <li>

@@ -43,9 +43,13 @@ $route['404_override'] = '';
 
 
 $route['register'] = 'login/register';
-$route['access_level'] = 'home/access_level';
-$route['home'] = 'home/index';
 $route['logout'] = 'login/logout';
+
+$route['access_level'] = 'home/access_level';
+
+$route['home'] = 'home/index';
+
+$route['createproject'] = 'project/createproject';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
